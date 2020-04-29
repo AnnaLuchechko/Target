@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         box.frame.origin.x = origin.x
         box.frame.origin.y = origin.y
         box.backgroundColor = boxColor
+        box.layer.cornerRadius = boxSize.width / 2
         self.view.addSubview(box)
     }
 
