@@ -12,12 +12,34 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let boxSize = getBoxSize(widthScreenSide: view.frame.size.width, heightScreenSide: view.frame.size.height)
-        drawBox(boxSize: boxSize, origin: getBoxOrigin(widthScreenSide: view.frame.size.width, heightScreenSide: view.frame.size.height, boxSize: boxSize) )
+        let boxSize = getBoxSize(widthScreenSide: view.frame.size.width,
+                                 heightScreenSide: view.frame.size.height)
+        
+        let secondBoxSize = getSecondBoxSize(widthScreenSide: view.frame.size.width,
+                                 heightScreenSide: view.frame.size.height)
+        
+        let thirdBoxSize = getThirdBoxSize(widthScreenSide: view.frame.size.width,
+                                 heightScreenSide: view.frame.size.height)
+        
+        drawBox(boxSize: boxSize, origin: getBoxOrigin(widthScreenSide: view.frame.size.width, heightScreenSide: view.frame.size.height, boxSize: boxSize), boxColor: .blue)
+        drawBox(boxSize: secondBoxSize, origin: getBoxOrigin(widthScreenSide: view.frame.size.width, heightScreenSide: view.frame.size.height, boxSize: secondBoxSize), boxColor: .purple )
+        drawBox(boxSize: thirdBoxSize, origin: getBoxOrigin(widthScreenSide: view.frame.size.width, heightScreenSide: view.frame.size.height, boxSize: thirdBoxSize), boxColor: .blue)
     }
 
     func getBoxSize(widthScreenSide:CGFloat, heightScreenSide:CGFloat) -> CGSize {
-        let boxSize = widthScreenSide - 50
+        let boxSize = widthScreenSide - widthScreenSide / 10
+    
+        return CGSize(width: boxSize, height: boxSize)
+    }
+    
+    func getSecondBoxSize(widthScreenSide:CGFloat, heightScreenSide:CGFloat) -> CGSize {
+        let boxSize = widthScreenSide - widthScreenSide / 4
+    
+        return CGSize(width: boxSize, height: boxSize)
+    }
+    
+    func getThirdBoxSize(widthScreenSide:CGFloat, heightScreenSide:CGFloat) -> CGSize {
+        let boxSize = widthScreenSide - widthScreenSide / 2
     
         return CGSize(width: boxSize, height: boxSize)
     }
@@ -29,13 +51,13 @@ class ViewController: UIViewController {
         return CGPoint(x: xOrigin, y: yOrigin)
     }
     
-    func drawBox(boxSize: CGSize, origin: CGPoint) {
+    func drawBox(boxSize: CGSize, origin: CGPoint, boxColor: UIColor) {
         let box = UIView()
         box.frame.size.width = boxSize.width
         box.frame.size.height = boxSize.width
         box.frame.origin.x = origin.x
         box.frame.origin.y = origin.y
-        box.backgroundColor = .magenta
+        box.backgroundColor = boxColor
         self.view.addSubview(box)
     }
 
